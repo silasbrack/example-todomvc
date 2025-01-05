@@ -8,9 +8,8 @@ import todomvc/router
 import todomvc/web.{Context}
 import wisp
 
-const db_name = "todomvc.sqlite3"
-
 pub fn main() {
+  let assert Ok(db_name) = os.get_env("SQLITE_FILE_PATH")
   wisp.configure_logger()
 
   let port = load_port()
