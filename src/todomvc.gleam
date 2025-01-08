@@ -9,8 +9,9 @@ import todomvc/web.{Context}
 import wisp
 
 pub fn main() {
-  let assert Ok(db_name) = os.get_env("SQLITE_FILE_PATH")
   wisp.configure_logger()
+  let assert Ok(db_name) = os.get_env("SQLITE_FILE_PATH")
+  wisp.log_info("DB Name is " <> db_name)
 
   let port = load_port()
   let secret_key_base = load_application_secret()
