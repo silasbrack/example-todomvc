@@ -41,13 +41,18 @@
         packages.default = pkgs.buildGleamApplication {
           src = ./.;
           erlangPackage = pkgs.erlang_27;
+          rebar3Package = pkgs.rebar3WithPlugins {
+            plugins = with pkgs.beamPackages; [ pc ];
+          };
         };
         devShells.default = pkgs.mkShell {
           packages = [ matcha ];
           buildInputs = with pkgs; [
             gleam
             erlang_27
-            rebar3
+            (rebar3WithPlugins {
+              plugins = with beamPackages; [ pc ];
+            })
             inotify-tools
             nodejs_22
           ];
